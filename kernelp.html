@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kernel panic</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+        .penguins {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .penguins img {
+            height: 100px;
+        }
+        .content {
+            margin-top: 110px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="penguins">
+        <img src="kernelp/penguin.png" alt="Penguin">
+        <img src="kernelp/penguin.png" alt="Penguin">
+    </div>
+    <div class="content">
+        <script>
+            const now = new Date();
+            const formattedTime = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
+
+            const panicText = `
+[    0.000000] Linux version 6.5.0-1-amd64 (debian-kernel@lists.debian.org) (gcc (Debian 13.2.0) 13.2.0, GNU ld (GNU Binutils for Debian) 2.40) #1 SMP Debian 6.5.1-1 (2024-08-15)
+${formattedTime} Command line: BOOT_IMAGE=/boot/vmlinuz-6.5.0-1-amd64 root=UUID=12345678-90ab-cdef-1234-567890abcdef ro quiet
+[    0.000000] KERNEL-PANIC: Attempted to access non-existent webpage.
+[    0.000000]  CPU: 0 PID: 1 Comm: init Not tainted 6.5.0-1-amd64 #1 Debian 6.5.1-1
+[    0.000000] Hardware name: NIXOS 2.24.4, BIOS VirtualBox 7.0.8 r156879 04/19/2024
+[    0.000000] Call Trace:
+[    0.000000]  [<ffffffff810e3185>] panic+0x123/0x123
+[    0.000000]  [<ffffffff81304c7a>] do_page_fault+0x22a/0x500
+[    0.000000]  [<ffffffff81016a1c>] page_fault+0x1c/0x30
+[    0.000000]  [<ffffffff8173e7fc>] kernel_panic+0x0/0x100
+[    0.000000]  [<ffffffff810e3185>] panic+0x1aa/0x1aa
+[    0.000000] ---[ end trace 0000000000000000 ]---
+
+the web server encountered a problem and couldn't retrieve the requested page.
+please try again later. if the problem persists, please contact your system administrator.
+            `;
+            document.write(panicText);
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+CHANGELOG 1.20
+- switched to arch linux so no more static until i get it working
+- cloudflare pages time
+- trollm8.is-a.dev no longer active
+----END OF CHANGELOG----
